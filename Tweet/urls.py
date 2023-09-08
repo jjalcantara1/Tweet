@@ -16,20 +16,23 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include #para mainclude ung views ng tweets app
+from django.urls import path, include  # para mainclude ung views ng tweets app
 from django.conf import settings
 from django.conf.urls.static import static
+
+from contact.views import contact_page
 from .views import *
 from authen.views import *
-#from templates import *
+
+# from templates import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name='home'),
     path('tweets/', include('tweets.urls')),
-    path('register/', register_page, name='register'),
+    path('register/', RegisterView.as_view(), name='register'),
+    path('contact/', contact_page, name='contact'),
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
                   static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

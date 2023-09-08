@@ -14,9 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include #para mainclude ung views ng tweets app
+from django.conf import settings
+from django.conf.urls.static import static
+from .views import *
+from authen.views import *
+#from templates import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home, name='home'),
+    path('tweets/', include('tweets.urls')),
+    path('register/', register_page, name='register'),
 ]
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+                  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gabster Sign up</title>
+  <link rel="stylesheet" href="{% static 'register/style.css' %}">
+</head>
+<body>
+  <div class="wrapper">
+    <h2>Registration</h2>
+      <form class="form-signin" method="post"> {% csrf_token %}
+      <div class="input-box">
+          <label>
+              <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" required>
+          </label>
+      </div>
+
+      <div class="input-box">
+              <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email Address" required>
+        <i class="icon fas fa-envelope"></i>
+        <i class="error error-icon fas fa-exclamation-circle"></i>
+      </div>
+
+      <div class="input-box">
+              <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Create password" required>
+      </div>
+
+      <div class="input-box">
+              <input type="password" name="password2" id="inputPassword2" class="form-control"  placeholder="Confirm password" required>
+
+      </div>
+
+{#          {% for field in registration_form %}#}
+{#          <p>#}
+{#              {% for error in field.errors %}#}
+{#              <p style="color: red">{{ error }}</p>#}
+{#              {% endfor %}#}
+{#          </p>#}
+{#            {% endfor %}#}
+{#      {% if registration_form.non_field_errors %}#}
+{#      <div style="color: red">#}
+{#          <p>{{ registration_form.non_field_errors }}</p>#}
+{#        </div>#}
+{#        {% endif %}#}
+
+      <div class="policy">
+              <input type="checkbox" name="accept_terms" required>
+        <h3>I accept all terms & condition</h3>
+      </div>
+
+      <div class="input-box button">
+        <input type="submit" value="Register Now">
+      </div>
+
+
+    </form>
+  </div>
+</body>
+</html>

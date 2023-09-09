@@ -16,12 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include  # para mainclude ung views ng tweets app
+from django.urls import path, include, re_path  # para mainclude ung views ng tweets app
 from django.conf import settings
 from django.conf.urls.static import static
 
 from contact.views import contact_page
-from tweets.views import TweetCreateView
+from tweets.views import TweetCreateView, TweetUpdateView, TweetDetailView
 from .views import *
 from authen.views import *
 
@@ -34,6 +34,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('contact/', contact_page, name='contact'),
     path('create/', TweetCreateView.as_view(), name='create-view'),
+    re_path(r'^(?P<pk>d+)/$', TweetDetailView.as_view(), name='detail-view'),
+    re_path(r'^(?P<pk>d+)/$', TweetUpdateView.as_view(), name='update-view'),
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

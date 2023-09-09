@@ -4,8 +4,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import *
 from templates import *
+from .models import *
 
 urlpatterns = [
     path('', TweetListView.as_view(), name='list-view'),
+
     re_path(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name='detail-view')
 ]

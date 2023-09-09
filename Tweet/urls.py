@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 from contact.views import contact_page
+from tweets.views import TweetCreateView
 from .views import *
 from authen.views import *
 
@@ -32,6 +33,7 @@ urlpatterns = [
     path('tweets/', include('tweets.urls')),
     path('register/', RegisterView.as_view(), name='register'),
     path('contact/', contact_page, name='contact'),
+    path('create/', TweetCreateView.as_view(), name='create-view'),
 ]
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \

@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from .views import *
 from templates import *
 from .models import *
+app_name = 'tweets'
 
 urlpatterns = [
     path('', TweetListView.as_view(), name='list-view'),
